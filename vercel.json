@@ -1,6 +1,5 @@
 {
   "routes": [
-    { "src": "/writing/who-is-the-customer", "dest": "/who-is-the-customer-article.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
