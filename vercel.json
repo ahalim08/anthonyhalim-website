@@ -1,6 +1,6 @@
 {
   "routes": [
-    { "src": "/writing/who-is-the-customer", "dest": "/who-is-the-customer-article.html" },
+    { "src": "/writing/who-is-the-customer", "dest": "/writing/2026-05-19-who-is-the-customer/who-is-the-customer-article.html" },
     { "src": "/writing/huckleberry-napping.jpg", "dest": "/writing/2026-05-19-who-is-the-customer/huckleberry-napping.jpg" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
