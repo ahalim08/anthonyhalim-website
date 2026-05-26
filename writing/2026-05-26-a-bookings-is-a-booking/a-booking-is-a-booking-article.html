@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Booking is a Booking is a Booking (Until It Isn't) - Anthony Halim</title>
+  <meta name="description" content="" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #fafaf9; }
+    body { font-family: "Inter", -apple-system, system-ui, sans-serif; color: #0d0d0e; }
+    * { box-sizing: border-box; }
+    
+    .article-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+    
+    .article-header {
+      margin-bottom: 60px;
+    }
+    
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0d0d0e;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: opacity 0.2s;
+    }
+    
+    .article-back:hover {
+      opacity: 0.6;
+    }
+    
+    .article-date {
+      font-size: 13px;
+      color: rgba(13, 13, 14, 0.55);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .article-title {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: #0d0d0e;
+    }
+    
+    .article-excerpt {
+      font-size: 18px;
+      color: rgba(13, 13, 14, 0.7);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    
+    .article-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #0d0d0e;
+    }
+    
+    .article-body p {
+      margin: 0 0 24px 0;
+    }
+    
+    .article-body h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 48px 0 24px 0;
+      color: #0d0d0e;
+    }
+    
+    .article-body em {
+      font-style: italic;
+      color: rgba(13, 13, 14, 0.8);
+    }
+    
+    .article-body strong {
+      font-weight: 600;
+      color: #a855f7;
+    }
+
+    .article-table {
+      width: 100%;
+      margin: 32px 0;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .article-table th {
+      text-align: left;
+      font-weight: 600;
+      padding: 16px;
+      border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+      background: rgba(168, 85, 247, 0.08);
+    }
+
+    .article-table th:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    .article-table th:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    .article-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(13, 13, 14, 0.10);
+    }
+
+    .article-table tr:last-child td:first-child {
+      border-radius: 0 0 0 8px;
+    }
+
+    .article-table tr:last-child td:last-child {
+      border-radius: 0 0 8px 0;
+    }
+
+    .article-table tr:last-child td {
+      border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+    }
+    
+    .article-figure {
+      margin: 48px 0;
+      padding: 32px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid rgba(13, 13, 14, 0.1);
+    }
+    
+    .article-figure-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(13, 13, 14, 0.7);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .article-quote {
+      padding: 24px;
+      margin: 32px 0;
+      border-left: 4px solid #a855f7;
+      background: rgba(168, 85, 247, 0.05);
+      font-style: italic;
+      color: rgba(13, 13, 14, 0.8);
+    }
+    
+    .article-footer {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(13, 13, 14, 0.1);
+    }
+    
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #d97757);
+    }
+    
+    .author-info h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    
+    .author-info p {
+      margin: 4px 0 0 0;
+      font-size: 13px;
+      color: rgba(13, 13, 14, 0.55);
+    }
+    
+    @media (max-width: 640px) {
+      .article-container {
+        padding: 40px 24px;
+      }
+      
+      .article-title {
+        font-size: 32px;
+      }
+      
+      .article-excerpt {
+        font-size: 16px;
+      }
+      
+      .article-body {
+        font-size: 15px;
+      }
+      
+      .article-body h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="article-container">
+    <div style="font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(13, 13, 14, 0.55); margin-bottom: 32px;">06 | Writing</div>
+    
+    <a href="/" class="article-back">← Back to home</a>
+    
+    <div class="article-header">
+      <div class="article-date">May 29, 2026</div>
+      <h1 class="article-title">A Booking is a Booking is a Booking (Until It Isn't)</h1>
+      <p class="article-excerpt">Why tracking bookings by signed date alone breaks your revenue model. The case for building both signed and active bookings from day one, and the bridge that explains the gap between them.</p>
+    </div>
+    
+    <div class="article-body">
+      <p>Fresh out of college, my first job was at PwC. It was during the throes of the 2008 recession. I wasn't making much, but the concept of a bonus was entirely new to me. The moment I heard my number, I was already spending it: nicer dinners, picking up rounds at Father's Office with friends and colleagues, running up the card before the check ever cleared. I remember buying a nice leather jacket. This was back when leather jackets were cool, so don't judge me.</p>
+
+      <p>I didn't have the money yet. I just knew it was coming, and apparently that was close enough. The dopamine hit every time I spent money I didn't have yet. The sobriety hit every time I opened my credit card statement.</p>
+
+      <h2>Then Came AuditBoard</h2>
+
+      <p>At AuditBoard, we counted our chickens without paying much attention to when they'd hatch. It was culture, and when everyone around you is counting the same chickens, it starts to feel like the right way to count.</p>
+
+      <p>Our founder Jay used to say: <em>"A booking is a booking is a booking. Why does it matter if bookings hasn't started yet?"</em> Jay, who very sadly passed recently, had a gift for making a room believe in what it was building. He said it to motivate the sales team, to signal momentum, to sell the story of a growing company. He was right. We were early enough that momentum was the product, and Jay knew exactly what he was selling. <strong>A great founder-seller doesn't hedge the narrative; he builds belief. But belief doesn't populate a revenue model.</strong> That's where the operator has to step in.</p>
+
+      <p>Shortly thereafter, a new CFO came in, still getting oriented with the business. One of his first questions was why there was such a large gap between our bookings and revenue. I parroted Jay's line, dressed up more professionally: "We view bookings on a signed basis." I repeated it like I believed it. He nodded, but I'm not sure he believed me. To be fair, I didn't believe me either. That conversation sent me back to dig into our data to build a bridge I should have had ready from day one.</p>
+
+      <h2>The Client Waterfall Problem</h2>
+
+      <p>Years later, I was hired by a mid-sized startup to build a revenue waterfall. They tracked bookings by signed date, and I couldn't tie their rev rec file back without performing data gymnastics to get there. They too had been counting their chickens. I kept wondering whether the model was complete, whether we were missing deals, or whether some of them just hadn't started yet. There was no anchor, and the whole experience triggered a flashback to my AuditBoard days.</p>
+
+      <h2>The Tension (And Why It Doesn't Have to Exist)</h2>
+
+      <p>Signed and active bookings can feel like opposing views, but they're not. They're just measuring different things, and the resistance to tracking both is understandable. Sales hates it because it makes their numbers look smaller, as though it discounts work they've already done. Finance and RevOps hate it because it's just more work to track. But the sooner both settle in, the sooner everyone speaks the same number, with no more exasperated executives wondering why Sales, Finance, and RevOps are all quoting different figures in the same meeting.</p>
+
+      <p><strong>The fix isn't choosing one. It's building both from day one.</strong></p>
+
+      <h2>Two Dates, Two Stories</h2>
+
+      <p><strong>Signed bookings</strong> captures the date a contract is executed. It shows sales output and growth velocity, and it's the better story for external audiences: investors, board members, and interested parties. It also enables sales incentives tied to close date, which matters greatly at end of quarter. Consider this scenario: it's March 31st, and a customer won't start until May 1st. The sales rep says, "Sign now, start later." That's not bad behavior. It's a legally binding commitment to revenue, and you'd take that trade every time.</p>
+
+      <p><strong>Active bookings</strong> captures the date revenue actually begins. It tells the operational story: what cash should we actually expect, and when? This is what drives resource allocation, hiring plans, and forecasting. Take the same deal: you signed $1.5MM, with $0.5MM starting now, $0.5MM at end of year one, and $0.5MM at end of year two. That's a real win, and the sales team should take full credit for it.</p>
+
+      <p>You signed $1.5MM. Great. <em>That's the leather jacket moment.</em> Now let's talk about what's actually in your bank account.</p>
+
+      <p>Active bookings this year: $0.5MM. The board builds excitement around $1.5MM, the headcount plan follows, and then Q1 revenue comes in at $0.5MM and you're explaining a gap nobody saw coming. That's roughly four senior hires you planned for and don't have the revenue to support yet.</p>
+
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Bookings</th>
+            <th>Sign Date</th>
+            <th>Subscription Start</th>
+            <th>Signed Bookings</th>
+            <th>Active Bookings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Customer 1</td>
+            <td>$50K</td>
+            <td>1/1/2026</td>
+            <td>1/1/2026 (Q1)</td>
+            <td>$50K</td>
+            <td>$50K</td>
+          </tr>
+          <tr>
+            <td>Customer 2</td>
+            <td>$50K</td>
+            <td>1/1/2026</td>
+            <td>4/1/2026 (Q2)</td>
+            <td>$50K</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Customer 3</td>
+            <td>$50K</td>
+            <td>1/1/2026</td>
+            <td>7/1/2026 (Q3)</td>
+            <td>$50K</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>$150K</strong></td>
+            <td></td>
+            <td></td>
+            <td><strong>$150K</strong></td>
+            <td><strong>$50K</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Womp womp.</p>
+
+      <h2>What "Both" Actually Means</h2>
+
+      <p>In practice, this comes down to two dates in your CRM: a close date and an active date. That's it. Bonus points if you layer in logic that sets the effective date to the latter of the two. Beyond the setup, you need a bridge ready at all times to explain the difference between what's in your signed bookings and what shows up in your P&L. Build it upfront, not after someone asks. Think of it this way: the gap between CARR and ARR at any point in time is your signed-but-not-yet-active backlog, and that gap is the story you need to be able to tell.</p>
+
+      <p>Signed bookings captures growth velocity. Active bookings tells you what's actually hitting your P&L. Revenue is what drives real organizational behavior. Report all three, explain the gaps between them, and do it before anyone asks.</p>
+
+      <p>I eventually learned to wait for the chickens to hatch before counting them. The same patience applies at work, and the earlier you build for it, the better.</p>
+
+      <p><strong>The answer was never signed or active. It was always both — and the discipline to know which one you're looking at.</strong></p>
+    </div>
+    
+    <div class="article-footer">
+      <div class="article-author">
+        <div class="author-avatar"></div>
+        <div class="author-info">
+          <h3>Anthony Halim</h3>
+          <p>Finance leader and advisor for high-growth companies. SaaS Metrics · May 29, 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
