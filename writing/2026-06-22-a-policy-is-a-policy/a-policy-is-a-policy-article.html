@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Policy Is a Policy — Until It Isn't - Anthony Halim</title>
+  <meta name="description" content="Most bookings policies aren't policies — they're vibes. Why understanding a framework isn't the same as using it, and how a guided builder turns a static memo into a policy your whole team can query." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #fafaf9; }
+    body { font-family: "Inter", -apple-system, system-ui, sans-serif; color: #0d0d0e; }
+    * { box-sizing: border-box; }
+    
+    .article-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+    
+    .article-header {
+      margin-bottom: 60px;
+    }
+    
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0d0d0e;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: opacity 0.2s;
+    }
+    
+    .article-back:hover {
+      opacity: 0.6;
+    }
+    
+    .article-date {
+      font-size: 13px;
+      color: rgba(13, 13, 14, 0.55);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .article-title {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: #0d0d0e;
+    }
+    
+    .article-excerpt {
+      font-size: 18px;
+      color: rgba(13, 13, 14, 0.7);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    
+    .article-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #0d0d0e;
+    }
+    
+    .article-body p {
+      margin: 0 0 24px 0;
+    }
+    
+    .article-body h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 48px 0 24px 0;
+      color: #0d0d0e;
+    }
+    
+    .article-body em {
+      font-style: italic;
+      color: rgba(13, 13, 14, 0.8);
+    }
+    
+    .article-body strong {
+      font-weight: 600;
+      color: #a855f7;
+    }
+
+    .article-body code {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.86em;
+      color: #a855f7;
+    }
+
+    .article-outputs {
+      list-style: none;
+      counter-reset: outputs;
+      margin: 24px 0;
+      padding: 0 0 0 36px;
+    }
+
+    .article-outputs li {
+      position: relative;
+      margin: 0 0 18px 0;
+      padding-left: 18px;
+      line-height: 1.8;
+    }
+
+    .article-outputs li::before {
+      counter-increment: outputs;
+      content: counter(outputs) ".";
+      position: absolute;
+      left: -22px;
+      top: 0;
+      font-weight: 600;
+      color: #a855f7;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .article-outputs li code {
+      color: #0d0d0e;
+    }
+
+    .article-outputs li strong code {
+      color: #a855f7;
+    }
+
+    .article-table {
+      width: 100%;
+      margin: 32px 0;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .article-table th {
+      text-align: left;
+      font-weight: 600;
+      padding: 16px;
+      border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+      background: rgba(168, 85, 247, 0.08);
+    }
+
+    .article-table th:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    .article-table th:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    .article-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(13, 13, 14, 0.10);
+    }
+
+    .article-table tr:last-child td:first-child {
+      border-radius: 0 0 0 8px;
+    }
+
+    .article-table tr:last-child td:last-child {
+      border-radius: 0 0 8px 0;
+    }
+
+    .article-table tr:last-child td {
+      border-bottom: 2px solid rgba(168, 85, 247, 0.2);
+    }
+    
+    .article-figure {
+      margin: 48px 0;
+      padding: 32px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid rgba(13, 13, 14, 0.1);
+    }
+    
+    .article-figure-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(13, 13, 14, 0.7);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .article-quote {
+      padding: 24px;
+      margin: 32px 0;
+      border-left: 4px solid #a855f7;
+      background: rgba(168, 85, 247, 0.05);
+      font-style: italic;
+      color: rgba(13, 13, 14, 0.8);
+    }
+
+    .article-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0 24px 0;
+      padding: 13px 20px;
+      border-radius: 6px;
+      background: #a855f7;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: filter 0.2s;
+    }
+
+    .article-cta:hover {
+      filter: brightness(1.08);
+    }
+    
+    .article-footer {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(13, 13, 14, 0.1);
+    }
+    
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #d97757);
+    }
+    
+    .author-info h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    
+    .author-info p {
+      margin: 4px 0 0 0;
+      font-size: 13px;
+      color: rgba(13, 13, 14, 0.55);
+    }
+    
+    @media (max-width: 640px) {
+      .article-container {
+        padding: 40px 24px;
+      }
+      
+      .article-title {
+        font-size: 32px;
+      }
+      
+      .article-excerpt {
+        font-size: 16px;
+      }
+      
+      .article-body {
+        font-size: 15px;
+      }
+      
+      .article-body h2 {
+        font-size: 24px;
+      }
+    }
+
+    /* ============================================================
+       Embedded diagram — Bookings Memo Builder flow
+       Scoped under .bmb-stage to avoid colliding with article styles
+       ============================================================ */
+    .bmb-figure {
+      margin: 48px 0;
+    }
+    .bmb-stage {
+      --ink: #0d0d0e;
+      --muted: #6b7280;
+      --faint: #9ca3af;
+      --line: #e5e7eb;
+      --soft: #f9fafb;
+      --purple: #a855f7;
+      --purple-2: #7c3aed;
+      --purple-soft: #faf5ff;
+      --purple-line: #e9d5ff;
+      --orange: #c84a1f;
+      --orange-soft: #fff7ed;
+      --orange-line: #fed7aa;
+      font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+    }
+    .bmb-stage .diagram-wrap {
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 30px 26px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    }
+    .bmb-stage .eyebrow {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .bmb-stage .headline {
+      font-size: 23px;
+      font-weight: 650;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .bmb-stage .dek {
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 22px;
+    }
+    .bmb-stage .flow-labels {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr 1.25fr;
+      gap: 16px;
+      margin-bottom: 10px;
+      align-items: end;
+    }
+    .bmb-stage .label {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+    }
+    .bmb-stage .content-row {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr 1.25fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .bmb-stage .panel {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--soft);
+      padding: 18px 18px 16px;
+      min-height: 238px;
+    }
+    .bmb-stage .panel-title {
+      font-size: 16px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .bmb-stage .panel-sub {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .bmb-stage .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 7px;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.32;
+    }
+    .bmb-stage .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #d1d5db;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .bmb-stage .decision-card {
+      border: 1px solid var(--purple-line);
+      background: linear-gradient(180deg, #ffffff 0%, var(--purple-soft) 100%);
+      border-radius: 12px;
+      padding: 20px 18px;
+      min-height: 238px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bmb-stage .decision-card:before,
+    .bmb-stage .decision-card:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 16px;
+      height: 1.5px;
+      background: var(--line);
+    }
+    .bmb-stage .decision-card:before { left: -1px; }
+    .bmb-stage .decision-card:after { right: -1px; }
+    .bmb-stage .decision-label {
+      color: var(--purple-2);
+      font-size: 21px;
+      font-weight: 650;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+    .bmb-stage .decision-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .bmb-stage .builder-badge {
+      display: inline-flex;
+      align-self: center;
+      border: 1px solid var(--purple-line);
+      color: var(--ink);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .bmb-stage .outputs {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .bmb-stage .output-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 12px 14px;
+    }
+    .bmb-stage .output-card.highlight {
+      border-color: var(--purple-line);
+      background: var(--purple-soft);
+    }
+    .bmb-stage .output-num {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .bmb-stage .output-num.accent { color: var(--purple-2); }
+    .bmb-stage .output-title {
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .bmb-stage .output-sub {
+      font-size: 11.5px;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+    .bmb-stage .loop {
+      margin-top: 18px;
+      border: 1px solid var(--orange-line);
+      background: var(--orange-soft);
+      border-radius: 12px;
+      padding: 13px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .bmb-stage .loop-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .bmb-stage .loop-title {
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      color: var(--orange);
+    }
+    .bmb-stage .loop-sub {
+      font-size: 11.5px;
+      color: #9a3412;
+      line-height: 1.35;
+    }
+    .bmb-stage .loop-steps {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .bmb-stage .pill {
+      border: 1px solid var(--orange-line);
+      background: #ffffff;
+      color: #9a3412;
+      border-radius: 999px;
+      padding: 6px 8px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .bmb-caption {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(13, 13, 14, 0.55);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    @media (max-width: 760px) {
+      .bmb-stage .flow-labels { display: none; }
+      .bmb-stage .content-row { grid-template-columns: 1fr; }
+      .bmb-stage .panel, .bmb-stage .decision-card { min-height: auto; }
+      .bmb-stage .decision-card:before, .bmb-stage .decision-card:after { display: none; }
+      .bmb-stage .loop { align-items: flex-start; flex-direction: column; }
+      .bmb-stage .loop-steps { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="article-container">
+    <div style="font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(13, 13, 14, 0.55); margin-bottom: 32px;">06 | Writing</div>
+    
+    <a href="/" class="article-back">← Back to home</a>
+    
+    <div class="article-header">
+      <div class="article-date">June 22, 2026</div>
+      <h1 class="article-title">A Policy Is a Policy — Until It Isn't</h1>
+      <p class="article-excerpt">Most bookings policies aren't really policies — they're vibes. Understanding a framework isn't the same as using one. Here's the gap, and the tool I built to close it.</p>
+    </div>
+    
+    <div class="article-body">
+      <p><a href="../2026-05-29-a-booking-is-a-booking/a-booking-is-a-booking-article.html" style="color: #a855f7; text-decoration: none; border-bottom: 1px solid rgba(168, 85, 247, 0.35);">"A booking is a booking"</a> gave me the what. The question that stayed with me was harder: even if you understand the framework, how do you get a team to actually use it?</p>
+
+      <p><strong>Most bookings policies aren't really policies. They're vibes.</strong></p>
+
+      <p>Everyone knows them — sort of. They get passed along in onboarding conversations, Slack threads, deal reviews, and the first few weeks of training on the job. They work fine because the people closest to the decisions usually know what to do.</p>
+
+      <p>Until they don't.</p>
+
+      <p>The problem is that a policy built on institutional memory travels poorly and oftentimes ages badly. It disappears the moment the person carrying it leaves the room. What felt obvious to the original team becomes fuzzy to the next one.</p>
+
+      <h2>Understanding Is Not the Same as Acting</h2>
+
+      <p>Reading something and acting on it consistently are different things. Anyone who has ever sat through an all-hands, nodded along, and returned to their desk to do exactly what they were doing before knows this.</p>
+
+      <p>Similarly, a memo filed after a leadership offsite is not a policy. It's just a document.</p>
+
+      <p>The gap tends to show up when the decision-maker is new, junior, or handling something alone at 10pm. No manager to call. No precedent they can remember. Just a live situation and a feeling about what the right call probably is.</p>
+
+      <p>But this isn't only a frontline problem. A policy only works if the organization understands and respects it. Finance needs to trust it, Ops needs to use it, and Leadership needs to stand behind it when it gets tested. If every function is operating from a slightly different version of the rule, you don't have a policy. Instead, you have a disagreement waiting to happen.</p>
+
+      <p>The fix isn't writing a longer memo. It's building something people can actually use.</p>
+
+      <h2>What I Built</h2>
+
+      <p>I built the Bookings Memo Builder because I kept running into the same problem: operators often understand their bookings logic but struggle to articulate it cleanly enough for other people to apply it consistently.</p>
+
+      <div class="bmb-figure">
+        <div class="bmb-stage">
+          <div class="diagram-wrap">
+            <div class="eyebrow">Bookings Memo Builder</div>
+            <div class="headline">Turn policy instincts into a usable operating system.</div>
+            <div class="dek">The builder is less about generating a memo and more about forcing the decisions that make a bookings policy usable.</div>
+
+            <div class="flow-labels">
+              <div class="label">Before</div>
+              <div class="label">Builder</div>
+              <div class="label">After</div>
+            </div>
+
+            <div class="content-row">
+              <div class="panel">
+                <div class="panel-title">Policy instincts</div>
+                <div class="panel-sub">The rules usually trapped in people's heads, Slack threads, or one-off deal reviews.</div>
+                <div class="item"><span class="dot"></span>Signed vs. active bookings</div>
+                <div class="item"><span class="dot"></span>Renewal treatment</div>
+                <div class="item"><span class="dot"></span>Expansion / contraction logic</div>
+                <div class="item"><span class="dot"></span>Ramped contract handling</div>
+                <div class="item"><span class="dot"></span>Free periods, discounts, and exceptions</div>
+              </div>
+
+              <div class="decision-card">
+                <div class="decision-label">A set of guided decisions</div>
+                <div class="decision-sub">A dynamic questioning flow that changes based on how the user responds.</div>
+                <div class="builder-badge">anthonyhalim.com</div>
+              </div>
+
+              <div class="outputs">
+                <div class="output-card">
+                  <div class="output-num">01 /</div>
+                  <div class="output-title">Memo Outline</div>
+                  <div class="output-sub">Shareable policy logic for leadership review and team alignment.</div>
+                </div>
+                <div class="output-card">
+                  <div class="output-num">02 /</div>
+                  <div class="output-title">AI Prompt</div>
+                  <div class="output-sub">Turn your answers into a draft policy with examples and edge-case logic.</div>
+                </div>
+                <div class="output-card highlight">
+                  <div class="output-num accent">03 /</div>
+                  <div class="output-title">Policy Skill</div>
+                  <div class="output-sub">Ask real booking scenarios against the same source of truth.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="loop">
+              <div class="loop-copy">
+                <div class="loop-title">Static memo → active policy loop</div>
+                <div class="loop-sub">Use real cases to harden the rulebook, expose gaps, and keep the policy alive.</div>
+              </div>
+              <div class="loop-steps">
+                <span class="pill">Respect</span>
+                <span class="pill">Retest</span>
+                <span class="pill">Repeat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bmb-caption"><em>The Bookings Memo Builder turns scattered instincts into three usable outputs — and a loop that keeps the policy alive.</em></div>
+      </div>
+
+      <p><strong>Why a guided questionnaire, not a prompt.</strong> A blank prompt is too easy to shortcut. You write what comes to mind, stop when it feels complete, cover the obvious cases, and miss the edges.</p>
+
+      <p>A structured questionnaire forces the uncomfortable part: making decisions before the exception is already sitting in front of you. How do you treat ramped contracts? What counts as signed versus active? How do renewals interact with expansion? When does a non-standard term need escalation? None of these questions are especially hard on their own. Together, they reveal whether you actually have a policy or just a collection of instincts.</p>
+
+      <p>More than once while building this, I found myself staring at a question I thought I already knew the answer to and realizing I didn't. The question wasn't complicated. It just demanded a level of specificity that most bookings conversations never reach. The process of answering the questions is the work. <em>That's not a bug — it's the point.</em></p>
+
+      <p>The tool walks through a set of these decisions and produces three outputs.</p>
+
+      <ol class="article-outputs">
+        <li><strong>The structured memo outline.</strong> Clean enough to send to a CFO or ops lead for a quick review, specific enough to help the person making the actual call. That balance matters. Too much detail and nobody reads it. Too little and it doesn't help when the weird cases show up.</li>
+        <li><strong>The AI prompt.</strong> The goal isn't to outsource the policy. It's to turn your answers into a plain-English framework with examples where they help, and enough structure to start testing the edges. Paste it into any LLM and continue the conversation from there.</li>
+        <li><strong>The <code>.skill</code> file.</strong> This is the one that changes the category. A memo saved in a folder is static. A <code>.skill</code> file is usable context — something an AI can actively reference rather than just retrieve. In practice: call back specific policy language on demand, run real booking scenarios and get a reasoned answer, give every function the same source of truth to query. And perhaps most usefully, surface the gaps. When the AI hesitates or contradicts itself, that's not necessarily a failure. It may be showing you exactly where the policy is underdeveloped. The edge case becomes a signal.</li>
+      </ol>
+
+      <p><strong>A document tells you what the policy is. A skill lets you use it.</strong></p>
+
+      <a href="https://anthonyhalim.com#bookings-memo-builder" class="article-cta">Try the Bookings Memo Builder →</a>
+
+      <h2>Useful Tool or Flashy Toy?</h2>
+
+      <p>Honest answer: I don't know yet. I haven't had enough real-world feedback to know whether this lands the way I think it will.</p>
+
+      <p>A few things worth naming honestly. The questionnaire only works if you're willing to sit with the discomfort of not having clean answers. If you rush through it or default to vague responses, the output will reflect that. The tool can't do the thinking for you. The <code>.skill</code> file is only as good as the policy it encodes — if the underlying decisions are sloppy, the output will be too.</p>
+
+      <p>What I do believe: a framework earns its status as policy. It doesn't start there. The first time you use it, it's a guess. By the fifth real case, it starts to harden, and that's the version worth having.</p>
+
+      <p>This is where AI can be genuinely useful in company operations — not as a magic answer machine, but as a forcing function. Something that takes the policy you think you have and makes you apply it to real situations. Sometimes it gives you confidence. Sometimes it exposes a hole. Both are the point.</p>
+
+      <h2>The Loop That Makes a Policy Real</h2>
+
+      <p>If "A booking is a booking" was about the gap between having a commitment and having cash, this is about the gap between having a document and having something your team actually uses.</p>
+
+      <p>Same idea. Different layer.</p>
+
+      <p><strong>A framework only becomes a real policy when it has been respected, retested, and repeated.</strong> Writing it down is the first step, not the finish line. The policy has to survive contact with real cases.</p>
+
+      <p>That process does four things. It hardens the policy, forcing the decisions you've been avoiding — most vibes fall apart the moment you try to articulate them precisely, and that friction is the point. It makes the policy accessible, so the answer isn't locked in one person's head or buried in a folder nobody opens. It creates a record of real cases, sharpening which rules hold, which need examples, and which need to be rewritten. And it exposes gaps, because every edge case either confirms the policy or shows you where the thinking is incomplete.</p>
+
+      <p>But that's okay — that's part of the journey: <em>Respect. Retest. Repeat.</em></p>
+
+      <p>That's what separates a hardened policy from a document aging in a folder. If your current policy can't do that, it's still a vibe.</p>
+    </div>
+    
+    <div class="article-footer">
+      <div class="article-author">
+        <div class="author-avatar"></div>
+        <div class="author-info">
+          <h3>Anthony Halim</h3>
+          <p>Finance leader and advisor for high-growth companies. Operating Systems · June 22, 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

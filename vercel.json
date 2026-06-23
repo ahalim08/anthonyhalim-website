@@ -3,6 +3,7 @@
     { "src": "/writing/who-is-the-customer", "dest": "/writing/2026-05-19-who-is-the-customer/who-is-the-customer-article.html" },
     { "src": "/writing/huckleberry-napping.jpg", "dest": "/writing/2026-05-19-who-is-the-customer/huckleberry-napping.jpg" },
     { "src": "/writing/a-booking-is-a-booking", "dest": "/writing/2026-05-29-a-booking-is-a-booking/a-booking-is-a-booking-article.html" },
+    { "src": "/writing/a-policy-is-a-policy", "dest": "/writing/2026-06-22-a-policy-is-a-policy/a-policy-is-a-policy-article.html" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
